@@ -12,6 +12,8 @@ EXPOSE 8000
 
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
+    sed -i 's/https/http/' /etc/apk/repositories && \
+    apk add curl && \
     apk add --update --no-cache postgresql-client && \
     apk add --update --no-cache --virtual .tmp-deps \
         build-base postgresql-dev musl-dev linux-headers && \
